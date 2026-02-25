@@ -1,10 +1,9 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { createCache } from '../../utils/cache';
 import { movieController } from '../../controllers';
 
 const cache = createCache();
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   const { id } = req.query;
   if (typeof id !== 'string') {
     res.status(400).json({ error: 'id parameter required' });

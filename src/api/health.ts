@@ -1,5 +1,3 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-export default function handler(_req: VercelRequest, res: VercelResponse) {
-  res.status(200).json({ status: 'ok', timestamp: Date.now() });
+export default function handler(_req: any, res: any) {
+  res.status(200).json({ status: "ok", timestamp: Date.now() });
 }

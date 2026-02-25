@@ -1,10 +1,9 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { createCache } from '../utils/cache';
 import { searchController } from '../controllers';
 
 const cache = createCache();
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   const q = req.query.q as string | undefined;
   if (!q) {
     res.status(400).json({ error: 'query parameter q is required' });
