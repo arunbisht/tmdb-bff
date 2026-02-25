@@ -6,5 +6,10 @@
       "use": "@vercel/node"
     }
   ],
-  "outputDirectory": "dist"
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "dist/api/$1.js"
+    }
+  ]
 }
