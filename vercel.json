@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "build": { "command": "npm run build" },
-  "builds": [
-    {
-      "src": "dist/api/**/*.js",
-      "use": "@vercel/node"
+  "functions": {
+    "dist/api/**/*.js": {
+      "runtime": "@vercel/node"
     }
-  ],
+  },
   "outputDirectory": "dist"
 }
