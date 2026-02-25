@@ -1,5 +1,5 @@
-import { createCache } from '../utils/cache';
-import { trendingController } from '../controllers';
+import { createCache } from "../utils/cache.js";
+import { trendingController } from "../controllers/index.js";
 
 const cache = createCache();
 

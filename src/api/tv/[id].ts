@@ -1,12 +1,12 @@
-import { createCache } from '../../utils/cache';
-import { tvController } from '../../controllers';
+import { createCache } from "../../utils/cache.js";
+import { tvController } from "../../controllers/index.js";
 
 const cache = createCache();
 
 export default async function handler(req: any, res: any) {
   const { id } = req.query;
-  if (typeof id !== 'string') {
-    res.status(400).json({ error: 'id parameter required' });
+  if (typeof id !== "string") {
+    res.status(400).json({ error: "id parameter required" });
     return;
   }
   try {

@@ -1,14 +1,16 @@
-import { getTrending, getMovie, getTv, search } from '../services/tmdb';
+import { getTrending, getMovie, getTv, search } from "../services/tmdb.js";
 
 // We keep a loose cache type so we don't depend on lru-cache exports directly
-export type CacheType<K, V> = ReturnType<typeof import('../utils/cache').createCache>;
+export type CacheType<K, V> = ReturnType<
+  typeof import("../utils/cache").createCache
+>;
 
 export function healthController() {
-  return { status: 'ok', timestamp: Date.now() };
+  return { status: "ok", timestamp: Date.now() };
 }
 
 export async function trendingController(cache: CacheType<string, any>) {
-  const key = 'trending';
+  const key = "trending";
   if (cache.has(key)) {
     return cache.get(key);
   }
@@ -17,7 +19,10 @@ export async function trendingController(cache: CacheType<string, any>) {
   return data;
 }
 
-export async function movieController(id: string, cache: CacheType<string, any>) {
+export async function movieController(
+  id: string,
+  cache: CacheType<string, any>,
+) {
   const key = `movie:${id}`;
   if (cache.has(key)) return cache.get(key);
   const data = await getMovie(id);
@@ -33,7 +38,10 @@ export async function tvController(id: string, cache: CacheType<string, any>) {
   return data;
 }
 
-export async function searchController(q: string, cache: CacheType<string, any>) {
+export async function searchController(
+  q: string,
+  cache: CacheType<string, any>,
+) {
   const key = `search:${q}`;
   if (cache.has(key)) return cache.get(key);
   const data = await search(q);

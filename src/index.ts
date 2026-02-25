@@ -1,6 +1,6 @@
-import http from 'http';
-import { requestHandler } from './server';
-import 'dotenv/config';
+import http from "http";
+import { requestHandler } from "./server.js";
+import "dotenv/config";
 
 const port = process.env.PORT || 3000;
 
