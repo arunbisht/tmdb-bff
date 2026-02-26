@@ -202,7 +202,8 @@
             <h3>📝 Notes</h3>
             <ul>
                 <li><strong>Authentication:</strong> All endpoints use your TMDB API key (set in <code>.env</code> as
-                    <code>TMDB_API_KEY</code>)</li>
+                    <code>TMDB_API_KEY</code>)
+                </li>
                 <li><strong>Caching:</strong> Responses are cached in memory with a 5-minute TTL using LRU cache</li>
                 <li><strong>Timeout & Retry:</strong> Network requests have a 5-second timeout with automatic retry (up
                     to 2 attempts)</li>
@@ -214,7 +215,29 @@
                     runs locally with Node.js</li>
             </ul>
         </div>
+        <div style="margin-top:24px;text-align:center">
+            <button id="fetch-trending"
+                style="background:#667eea;color:#fff;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600">Try
+                /api/trending</button>
+        </div>
+        <div id="results" style="margin-top:20px;max-height:420px;overflow:auto;
+                background:#ffffff;padding:16px;border-radius:8px;border:1px solid #e8e8e8"></div>
     </div>
+    <script>
+        async function fetchTrending() {
+            const el = document.getElementById('results');
+            el.innerText = 'Loading...';
+            try {
+                const res = await fetch('/api/trending');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const json = await res.json();
+                el.innerHTML = '<pre style="white-space:pre-wrap;">' + JSON.stringify(json.slice(0, 20), null, 2) + '</pre>';
+            } catch (err) {
+                el.innerText = 'Error: ' + (err.message || err);
+            }
+        }
+        document.getElementById('fetch-trending').addEventListener('click', fetchTrending);
+    </script>
 </body>
 
 </html>
