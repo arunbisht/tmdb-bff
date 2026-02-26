@@ -12,7 +12,7 @@
   ],
   "routes": [
     {
-      "src": "^/public/$",
+      "src": "^/$",
       "dest": "/index.html"
     },
     {
